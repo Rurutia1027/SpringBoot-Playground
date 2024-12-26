@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react';
 import './App.css';
+import {getAllStudents} from "./client";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // here we create an initial and empty  state
+    const [students, setStudents] = useState([]);
+    const fetchStudents = () => {
+        getAllStudents()
+            .then(response => response.json())
+            .then(data => setStudents(data));
+    };
+
+    useEffect(() => {
+        console.log("component is mounted ");
+        fetchStudents();
+    }, []);
+
+
+  return <p>{students.length}</p>;
 }
 
 export default App;
