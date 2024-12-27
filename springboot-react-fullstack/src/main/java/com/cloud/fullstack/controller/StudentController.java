@@ -13,11 +13,13 @@ import java.util.List;
 public class StudentController {
 
     @RequestMapping("/students")
-    public List<Student> students() {
+    public List<Student> students() throws InterruptedException {
+        // add this for testing fetch status is shown on page
+        Thread.sleep(10000);
         List<Student> ret = Arrays.asList(
                 new Student(1L, "Sebby", "sebby@gmail.com", Gender.MALE),
-                new Student(1L, "Alex", "alex@gmail.com", Gender.MALE),
-                new Student(1L, "Hale", "hale@gmail.com", Gender.FEMALE)
+                new Student(2L, "Alex", "alex@gmail.com", Gender.MALE),
+                new Student(3L, "Hale", "hale@gmail.com", Gender.FEMALE)
         );
         return ret;
     }
