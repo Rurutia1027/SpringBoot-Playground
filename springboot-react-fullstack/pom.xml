@@ -282,7 +282,7 @@
 
         <!-- profile for pushing jib built docker image to local directory  -->
         <profile>
-            <id>jib-push-to-docker</id>
+            <id>jib-push-to-local</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -370,7 +370,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <to>
-                                        <image>docker.io/nanachi1027/${app.image.name}:${app.image.tag}</image>
+                                        <image>nanachi1027/${app.image.name}:${app.image.tag}</image>
                                     </to>
                                 </configuration>
                                 <goals>
@@ -382,7 +382,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <to>
-                                        <image>docker.io/nanachi1027/${app.image.name}:latest</image>
+                                        <image>nanachi1027/${app.image.name}:latest</image>
                                     </to>
                                 </configuration>
                                 <goals>
