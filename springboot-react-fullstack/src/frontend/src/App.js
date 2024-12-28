@@ -52,7 +52,7 @@ const columns = [
     }
 ];
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{fontSize: 24}} spin/>;
 
 function App() {
     // here we create an initial and empty  state
@@ -64,9 +64,9 @@ function App() {
         getAllStudents()
             .then(response => response.json())
             .then(data => {
-                setFetching(false);
                 console.log(data);
                 setStudents(data);
+                setFetching(false);
             });
     };
 
@@ -77,11 +77,11 @@ function App() {
 
     const renderStudents = () => {
         if (fetching) {
-            return <Spin indicator={antIcon} />;
+            return <Spin indicator={antIcon}/>;
         }
 
         if (students.length <= 0) {
-            return "no data available";
+            return <Empty/>;
         }
         return <Table
             dataSource={students}
@@ -89,7 +89,8 @@ function App() {
             bordered
             title={() => 'Students'}
             pagination={{pageSize: 50}}
-            scroll={{y: 240}}/>;
+            scroll={{y: 240}}
+            rowKey={(stu) => stu.id}/>;
 
     }
 
