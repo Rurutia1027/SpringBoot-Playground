@@ -87,8 +87,6 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- Use the latest released version:
-                        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
                         <version>1.11.2</version>
                         <configuration>
                             <nodeVersion>v4.6.0</nodeVersion>
@@ -151,7 +149,7 @@
                         <version>3.4.4</version>
                         <configuration>
                             <from>
-                                <image>openjdk:11</image>
+                                <image>openjdk:15</image>
                             </from>
                             <container>
                                 <ports>
@@ -165,82 +163,21 @@
             </build>
         </profile>
 
-        <!-- profile for pushing jib built docker image to Docker Hub -->
+        <!-- profile for pushing jib built docker image to Docker Hub on local dev environment -->
         <profile>
-            <id>jib-push-to-docker</id>
+            <id>jib-push-to-dockerhub</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- Use the latest released version:
-                        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                        <version>1.11.2</version>
-                        <configuration>
-                            <nodeVersion>v4.6.0</nodeVersion>
-                            <workingDirectory>src/frontend</workingDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v15.4.0</nodeVersion>
-                                    <npmVersion>7.3.0</npmVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>install</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run build</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-build-folder</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/frontend/build</directory>
-                                        </resource>
-                                    </resources>
-                                    <outputDirectory>${basedir}/target/classes/static</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.4.4</version>
+                        <version>2.5.2</version>
                         <configuration>
                             <from>
-                                <image>openjdk:11</image>
+                                <image>openjdk:15</image>
                             </from>
                             <container>
                                 <ports>
@@ -256,6 +193,12 @@
                                 <configuration>
                                     <to>
                                         <image>docker.io/nanachi1027/${app.image.name}:${app.image.tag}</image>
+                                        <auth>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <username>${env.DOCKER_HUB_USERNAME}</username>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <password>${env.DOCKER_HUB_ACCESS_TOKEN}</password>
+                                        </auth>
                                     </to>
                                 </configuration>
                                 <goals>
@@ -268,6 +211,12 @@
                                 <configuration>
                                     <to>
                                         <image>docker.io/nanachi1027/${app.image.name}:latest</image>
+                                        <auth>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <username>${env.DOCKER_HUB_USERNAME}</username>
+                                            <!--suppress UnresolvedMavenProperty -->
+                                            <password>${env.DOCKER_HUB_ACCESS_TOKEN}</password>
+                                        </auth>
                                     </to>
                                 </configuration>
                                 <goals>
@@ -289,73 +238,12 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- Use the latest released version:
-                        https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                        <version>1.11.2</version>
-                        <configuration>
-                            <nodeVersion>v4.6.0</nodeVersion>
-                            <workingDirectory>src/frontend</workingDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v15.4.0</nodeVersion>
-                                    <npmVersion>7.3.0</npmVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>install</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm run build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run build</arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>copy-build-folder</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <resources>
-                                        <resource>
-                                            <directory>src/frontend/build</directory>
-                                        </resource>
-                                    </resources>
-                                    <outputDirectory>${basedir}/target/classes/static</outputDirectory>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.4.4</version>
+                        <version>2.5.2</version>
                         <configuration>
                             <from>
-                                <image>openjdk:11</image>
+                                <image>openjdk:15</image>
                             </from>
                             <container>
                                 <ports>
@@ -374,7 +262,7 @@
                                     </to>
                                 </configuration>
                                 <goals>
-                                    <goal>build</goal>
+                                    <goal>dockerBuild</goal>
                                 </goals>
                             </execution>
                             <execution>
@@ -386,7 +274,7 @@
                                     </to>
                                 </configuration>
                                 <goals>
-                                    <goal>build</goal>
+                                    <goal>dockerBuild</goal>
                                 </goals>
                             </execution>
                         </executions>
