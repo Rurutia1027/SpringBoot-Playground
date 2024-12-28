@@ -8,7 +8,7 @@ This project emphasizes deployment automation and efficient error handling.
 --- 
 
 ## Architecture Diagram:
-![img.png](docs/springboot-react-fullstack.png)
+![springboot-react-fullstack.png](docs/springboot-react-fullstack.png)
 --- 
 
 ## Highlights: 
@@ -40,3 +40,4 @@ This project emphasizes deployment automation and efficient error handling.
 - [Spring Boot & React Github Repository](https://github.com/amigoscode/spring-boot-react-fullstack)
 - [Ant Design 4.x](https://4x.ant.design/components/overview/)
 - [Maven Plugin: frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin)
+- [Jib](https://github.com/GoogleContainerTools/jib)

@@ -1,0 +1,35 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+      - "*"
+  pull_request:
+    branches:
+      - main
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "11"
+          distribution: "temurin"
+
+      - name: Set up Docker
+        run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+      - name: Build and push Docker image with latest tag
+        run: cd springboot-react-fullstack && mvn clean install -Pbuild-frontend -Pjib-push-to-dockerhub -Dapp.image.tag=latest
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          CI: false
