@@ -20,7 +20,11 @@ Below is a brief description of each project:
 
 ### Project 1: Spring Boot & React 
 
-#### Description 
+#### Description:
+#### Architecture Diagram: 
+
+<img width="1035" alt="springboot-react-fullstack" src="https://github.com/user-attachments/assets/d0c6bfe6-9c99-4e54-bc35-80b258a4786a" />
+
 #### Highlights: 
 #### Teach Stack: 
 - **Spring Boot Backend API**
