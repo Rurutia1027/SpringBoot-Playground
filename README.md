@@ -11,14 +11,19 @@ Below is a brief description of each project:
 ### Progress 
 | Project Name                                                          | Status        |
 | --------------------------------------------------------------------- | ------------- |
-| 🚀 **[Project 1: Spring Boot & React](./springboot-react-fullstack/)** | 🔄 In Progress |
+| 🚀 **[Project 1: Spring Boot & React Fullstack](./springboot-react-fullstack/)** | 🔄 In Progress |
 | 🌐 **Project 2:**                                                      | ⏳ Not Started |
 | ⚡ **Project 3:**                                                      | ⏳ Not Started |
 | 📊 **Project 4:**                                                      | ⏳ Not Started |
 | 🔄 **Project 5:**                                                      | ⏳ Not Started |
 | 🔐 **Project 6:**                                                      | ⏳ Not Started |
 
-### Project 1: Spring Boot & React 
+### Project 1: Spring Boot & React Fullstack
+
+#### Description:
+#### Architecture Diagram: 
+
+<img width="1035" alt="springboot-react-fullstack" src="https://github.com/user-attachments/assets/d0c6bfe6-9c99-4e54-bc35-80b258a4786a" />
 
 #### Description:
 A comprehensive project showcasing full-stack development using Spring Boot for backend services and React for frontend development. 
