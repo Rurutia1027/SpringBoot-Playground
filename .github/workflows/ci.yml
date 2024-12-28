@@ -27,6 +27,9 @@ jobs:
       - name: Set up Docker
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
+      - name: Navigate to springboot-react-fullstack directory
+        run: cd springboot-react-fullstack
+
       - name: Build and push Docker image with latest tag
         run: mvn clean install -Dapp.image.tag=latest -Pjib-push-to-dockerhub
         env:
