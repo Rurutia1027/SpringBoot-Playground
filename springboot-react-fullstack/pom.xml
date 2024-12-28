@@ -149,7 +149,7 @@
                         <version>3.4.4</version>
                         <configuration>
                             <from>
-                                <image>openjdk:15</image>
+                                <image>openjdk:11</image>
                             </from>
                             <container>
                                 <ports>
@@ -177,7 +177,7 @@
                         <version>2.5.2</version>
                         <configuration>
                             <from>
-                                <image>openjdk:15</image>
+                                <image>openjdk:11</image>
                             </from>
                             <container>
                                 <ports>
@@ -243,7 +243,7 @@
                         <version>2.5.2</version>
                         <configuration>
                             <from>
-                                <image>openjdk:15</image>
+                                <image>openjdk:11</image>
                             </from>
                             <container>
                                 <ports>
