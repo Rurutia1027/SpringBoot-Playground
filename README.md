@@ -1,4 +1,4 @@
-# Microservices Playground 
+# Microservices Playground  [![Build and Push Docker Image](https://github.com/Rurutia1027/microservice-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Rurutia1027/microservice-playground/actions/workflows/ci.yml)
 
 This repository showcase my journey in mastering **Spring Boot** and its ecosystem while building full-stack, and distributed application, how to integrate with streaming middlewares and how to integrate with big data platforms. It serves as a portfolio of projects and experiments that highlight skills in backend, frontend, DevOps, and cloud deployment. 
 
