@@ -1,22 +1,23 @@
-# Microservices Playground  [![Build and Push Docker Image](https://github.com/Rurutia1027/microservice-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Rurutia1027/microservice-playground/actions/workflows/ci.yml)
+# Microservices Playground [![Build and Push Docker Image](https://github.com/Rurutia1027/microservice-playground/actions/workflows/deploy_springboot-react-fullstack.yml/badge.svg)](https://github.com/Rurutia1027/microservice-playground/actions/workflows/deploy_springboot-react-fullstack.yml)
 
-This repository showcase my journey in mastering **Spring Boot** and its ecosystem while building full-stack, and distributed application, how to integrate with streaming middlewares and how to integrate with big data platforms. It serves as a portfolio of projects and experiments that highlight skills in backend, frontend, DevOps, and cloud deployment. 
+This repository showcases my journey in mastering **Spring Boot** and its ecosystem while building full-stack, and distributed applications, how to integrate with streaming middleware,s and how to integrate with big data platforms. It serves as a portfolio of projects and experiments that highlight skills in backend, frontend, DevOps, and cloud deployment. 
 
 ---
 ## 📂 Projects Overview 
 
-This repository contains a series of projects focused on exploring and implementing various aspects of backend, Java ecosystem, Spring Boot, distributed systems, and modern DevOps practices which integrated with microservice projects. 
+This repository contains a series of projects focused on exploring and implementing various aspects of the backend, Java ecosystem, Spring Boot, distributed systems, and modern DevOps practices which integrated with microservice projects. 
 Below is a brief description of each project: 
 
 ### Progress 
-| Project Name                                                          | Status        |
-| --------------------------------------------------------------------- | ------------- |
-| 🚀 **[Project 1: Spring Boot & React Fullstack](./springboot-react-fullstack/)** | 🔄 In Progress |
-| 🌐 **Project 2:**                                                      | ⏳ Not Started |
-| ⚡ **Project 3:**                                                      | ⏳ Not Started |
-| 📊 **Project 4:**                                                      | ⏳ Not Started |
-| 🔄 **Project 5:**                                                      | ⏳ Not Started |
-| 🔐 **Project 6:**                                                      | ⏳ Not Started |
+### Progress 
+| Project Name                                                          | Status        | CI/CD Status Badge  | CI/CD Pipeline Build Script | CI/CD Pipeline Deploy Script |
+| --------------------------------------------------------------------- | ------------- | ------------------- | --------------------------- | ---------------------------- |
+| 🚀 **[Project 1: Spring Boot & React Fullstack](./springboot-react-fullstack/)** | ✅ Finish | [![Build and Push Docker Image](https://github.com/Rurutia1027/microservice-playground/actions/workflows/build_springboot-react-fullstack.yml/badge.svg)](https://github.com/Rurutia1027/microservice-playground/actions/workflows/build_springboot-react-fullstack.yml) | [build.yml](https://github.com/Rurutia1027/microservice-playground/blob/main/.github/workflows/build_springboot-react-fullstack.yml) | [deploy.yml](https://github.com/Rurutia1027/microservice-playground/blob/main/.github/workflows/deploy_springboot-react-fullstack.yml) |
+| 🌐 **Project 2:**                                                      | ⏳ Not Started | -                   | -                           | -                            |
+| ⚡ **Project 3:**                                                      | ⏳ Not Started | -                   | -                           | -                            |
+| 📊 **Project 4:**                                                      | ⏳ Not Started | -                   | -                           | -                            |
+| 🔄 **Project 5:**                                                      | ⏳ Not Started | -                   | -                           | -                            |
+| 🔐 **Project 6:**                                                      | ⏳ Not Started | -                   | -                           | -                            |
 
 ### Project 1: Spring Boot & React Fullstack
 
@@ -42,7 +43,7 @@ This project emphasizes deployment automation and efficient error handling.
 - **React.js Frontend**
 - **Maven Build Tool**
 - **PostgreSQL Database**(running on Docker)
-- **Spring Data JPA** for adata management
+- **Spring Data JPA** for data management
 
 #### References 
 - [Spring Boot & React Course](https://www.amigoscode.com/p/full-stack-spring-boot-react)
