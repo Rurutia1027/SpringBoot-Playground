@@ -26,12 +26,12 @@ export const addNewStudent = student => {
     ).then(checkStatus);
 }
 
-export const deleteStudent = studentId => {
-    fetch(`api/v1/students/${studentId}`, {
+export const deleteStudent = studentId =>
+    fetch(`api/v1/${studentId}`, {
             method: 'DELETE',
         }
     ).then(checkStatus);
-}
+
 
 // actually this invokes the same API as getAllStudents
 export const refresh = () => {

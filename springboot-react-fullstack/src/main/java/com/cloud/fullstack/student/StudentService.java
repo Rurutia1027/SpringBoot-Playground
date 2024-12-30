@@ -18,4 +18,8 @@ public class StudentService {
         // todo: check if email is taken
         studentRepository.save(student);
     }
+
+    public void deleteStudent(String studentId) {
+        studentRepository.deleteById(Long.parseLong(studentId));
+    }
 }
