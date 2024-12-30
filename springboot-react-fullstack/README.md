@@ -41,3 +41,4 @@ This project emphasizes deployment automation and efficient error handling.
 - [Ant Design 4.x](https://4x.ant.design/components/overview/)
 - [Maven Plugin: frontend-maven-plugin](https://github.com/eirslett/frontend-maven-plugin)
 - [Jib](https://github.com/GoogleContainerTools/jib)
+- [Mockaroo](https://www.mockaroo.com/)

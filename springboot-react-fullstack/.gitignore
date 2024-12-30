@@ -35,3 +35,6 @@ build/
 .vscode/
 /src/main/resources/static/
 /src/frontend/node/
+/db-data/
+/bin/db-data/
+/src/frontend/package-lock.json
