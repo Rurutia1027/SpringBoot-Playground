@@ -1,0 +1,61 @@
+name: Build and Push Docker Image
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  # Postgres
+  POSTGRESQL_DB: fullstack
+  POSTGRESQL_USER: postgres
+  POSTGRESQL_PASSWORD: admin
+
+  # Docker Hub
+  DOCKER_HUB_USERNAME: nanachi1027
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRESQL_DB: ${{env.POSTGRESQL_DB}}
+          POSTGRES_USER: ${{env.POSTGRESQL_USER}}
+          POSTGRES_PASSWORD: ${{env.POSTGRESQL_PASSWORD}}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "11"
+          distribution: "temurin"
+
+      # generate a timestamp based unique build number rather than using latest which is hard to distinguish
+      - name: Build Number
+        id: build-number
+        run: echo "::set-output name=BUILD_NUMBER::$(date '+%-d.%-m.%Y.%-H.%-M.%-S')"
+
+        # adopt github inner dockerlogin action rather than docker login -u shell command
+      - name: Docker Login
+        uses: docker/login-action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a
+        with:
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
+
+      - name: Maven Clean Package and Push to Dockerhub
+        run: |
+          cd springboot-react-fullstack && mvn clean package \
+            -P build-frontend \
+            -Pjib-push-to-dockerhub \
+            -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
+        env:
+          # disable npm build warning block npm build
+          CI: false
