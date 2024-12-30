@@ -14,6 +14,7 @@ function StudentDrawerForm({showDrawer, setShowDrawer, fetchStudents}) {
     const onFinish = student => {
         setSubmitting(true);
         console.log(JSON.stringify(student, null, 2));
+        alert(JSON.stringify(student, null, 2));
         addNewStudent(student)
             .then(() => {
                 console.log("student added");
