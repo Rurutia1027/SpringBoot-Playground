@@ -23,7 +23,7 @@ import {
     TeamOutlined,
     UserOutlined,
     LoadingOutlined,
-    PlusOutlined
+    PlusOutlined, DownloadOutlined
 } from '@ant-design/icons';
 
 const {Header, Content, Footer, Sider} = Layout;
@@ -87,9 +87,10 @@ function App() {
             dataSource={students}
             columns={columns}
             bordered
-            title={() => 'Students'}
+            title={() =>
+                <Button type="primary" shape="round" icon={<PlusOutlined />} size="small">Add New Student</Button>}
             pagination={{pageSize: 50}}
-            scroll={{y: 240}}
+            scroll={{y: 500}}
             rowKey={(stu) => stu.id}/>;
 
     }
@@ -135,7 +136,8 @@ function App() {
                 <Footer style={{textAlign: 'center'}}>By Rurutia1027</Footer>
             </Layout>
         </Layout>
-    );
+    )
+        ;
 }
 
 export default App;
