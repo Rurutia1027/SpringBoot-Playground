@@ -1,30 +1,19 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import './App.css';
 import {getAllStudents} from "./client";
-
-import {
-    Layout,
-    Menu,
-    Breadcrumb,
-    Table,
-    Spin,
-    Empty,
-    Button,
-    Badge,
-    Tag,
-    Avatar,
-    Radio, Popconfirm, Image, Divider
-} from 'antd';
+import StudentDrawerForm from "./StudentDrawerForm";
+import {Breadcrumb, Button, Empty, Layout, Menu, Spin, Table} from 'antd';
 
 import {
     DesktopOutlined,
-    PieChartOutlined,
     FileOutlined,
-    TeamOutlined,
-    UserOutlined,
     LoadingOutlined,
-    PlusOutlined, DownloadOutlined
+    PieChartOutlined,
+    PlusOutlined,
+    TeamOutlined,
+    UserOutlined
 } from '@ant-design/icons';
+import {errorNotification} from "./Notification";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -59,16 +48,23 @@ function App() {
     const [students, setStudents] = useState([]);
     const [collapsed, setCollapsed] = useState(false);
     const [fetching, setFetching] = useState(true);
+    const [showDrawer, setShowDrawer] = useState(false);
 
-    const fetchStudents = () => {
+    const fetchStudents = () =>
         getAllStudents()
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 setStudents(data);
                 setFetching(false);
+            }).catch(err => {
+            console.log(err);
+            err.response.json().then(res => {
+                console.log(res);
+                errorNotification("There was an issue",
+                    `${res.message} [${res.status}] [${res.error}]`);
             });
-    };
+        }).finally(() => setFetching(false));
 
     useEffect(() => {
         console.log("component is mounted ");
@@ -81,19 +77,48 @@ function App() {
         }
 
         if (students.length <= 0) {
-            return <Empty/>;
+            return <>
+                <Button
+                    onClick={() => setShowDrawer(!showDrawer)}
+                    type="primary" shape="round" icon={<PlusOutlined/>} size="small">
+                    Add New Student
+                </Button>
+                <StudentDrawerForm
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    fetchStudents={fetchStudents}
+                />
+                <Empty/>
+            </>
         }
-        return <Table
-            dataSource={students}
-            columns={columns}
-            bordered
-            title={() =>
-                <Button type="primary" shape="round" icon={<PlusOutlined />} size="small">Add New Student</Button>}
-            pagination={{pageSize: 50}}
-            scroll={{y: 500}}
-            rowKey={(stu) => stu.id}/>;
 
-    }
+        return <>
+            <StudentDrawerForm
+                showDrawer={showDrawer}
+                setShowDrawer={setShowDrawer}
+                fetchStudents={fetchStudents}
+            />
+            <Table
+                dataSource={students}
+                columns={columns}
+                bordered
+                title={() =>
+                    <>
+                        <Button
+                            onClick={() => setShowDrawer(!showDrawer)}
+                            type="primary" shape="round" icon={<PlusOutlined/>} size="small">
+                            Add New Student
+                        </Button>
+
+                    </>
+                }
+                pagination={{pageSize: 50}}
+                scroll={{y: 500}}
+                rowKey={student => student.id}
+            ></Table>
+        </>
+
+    } // renderStudents
 
     return (
         <Layout
@@ -124,7 +149,7 @@ function App() {
             </Sider>
             <Layout className="site-layout">
                 <Header className="site-layout-background" style={{padding: 0}}/>
-                <Content sytle={{margin: '0 16px'}}>
+                <Content style={{margin: '0 16px'}}>
                     <Breadcrumb style={{margin: '16px 0'}}>
                         <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
