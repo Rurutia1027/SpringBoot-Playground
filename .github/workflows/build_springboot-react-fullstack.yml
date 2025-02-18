@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "springboot-react-fullstack/**"
+      - ".github/workflows/**"
+      
   workflow_dispatch:
 
 env:
