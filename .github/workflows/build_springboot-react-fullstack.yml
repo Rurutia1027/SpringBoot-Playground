@@ -47,13 +47,14 @@ jobs:
         id: build-number
         run: echo "::set-output name=BUILD_NUMBER::$(date '+%-d.%-m.%Y.%-H.%-M.%-S')"
 
+            # Check if the 'fullstack' database exists in PostgreSQL
       - name: Verify PostgreSQL Database
         run: |
           until pg_isready -h localhost -p 5432 -U postgres; do
             echo "Waiting for PostgreSQL to be ready..."
             sleep 2
           done
-          psql -h localhost -p 5432 -U postgres -c "SELECT 1 FROM pg_database WHERE datname='${{env.POSTGRESQL_DB}}';" || exit 1
+          PGPASSWORD=${{env.POSTGRESQL_PASSWORD}} psql -h localhost -p 5432 -U postgres -c "SELECT 1 FROM pg_database WHERE datname='${{env.POSTGRESQL_DB}}';" || exit 1
         env:
           POSTGRESQL_DB: ${{env.POSTGRESQL_DB}}
           POSTGRESQL_USER: ${{env.POSTGRESQL_USER}}
