@@ -75,12 +75,12 @@ jobs:
           username: ${{secrets.DOCKER_HUB_USERNAME}}
           password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
 
-      # - name: Maven Clean Package and Push to Dockerhub
-      #   run: |
-      #     cd springboot-react-fullstack && mvn clean package \
-      #       -P build-frontend \
-      #       -Pjib-push-to-dockerhub \
-      #       -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
-      #   env:
-      #     # disable npm build warning block npm build
-      #     CI: false
+      - name: Maven Clean Package and Push to Dockerhub
+        run: |
+          cd springboot-react-fullstack && mvn clean package \
+            -P build-frontend \
+            -Pjib-push-to-dockerhub \
+            -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
+        env:
+          # disable npm build warning block npm build
+          CI: false
