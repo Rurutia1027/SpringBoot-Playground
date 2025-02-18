@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "springboot-react-fullstack/**"
+      - ".github/workflows/**"
+      
   workflow_dispatch:
 
 env:
@@ -23,9 +25,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRESQL_DB: ${{env.POSTGRESQL_DB}}
-          POSTGRES_USER: ${{env.POSTGRESQL_USER}}
-          POSTGRES_PASSWORD: ${{env.POSTGRESQL_PASSWORD}}
+          POSTGRESQL_DB: fullstack
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
