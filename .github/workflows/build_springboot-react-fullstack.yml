@@ -1,8 +1,10 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Image for springboot-react-fullstack
 
 on:
   pull_request:
     branches: [main]
+    paths:
+      - "springboot-react-fullstack/**"
   workflow_dispatch:
 
 env:
