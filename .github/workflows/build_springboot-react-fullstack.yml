@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "springboot-react-fullstack/**"
-      - ".github/workflows/**"
+      - ".github/workflows/build_springboot-react**"
       
   workflow_dispatch:
 

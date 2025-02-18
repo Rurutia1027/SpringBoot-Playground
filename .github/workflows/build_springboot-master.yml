@@ -1,0 +1,37 @@
+name: Build and Push Docker Image for springboot-master-class 
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "springboot-master-class/springboot-master-section-**"
+      - ".github/workflows/build_springboot-master*"
+      
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:  
+      # matrix enables each project can be compiled in parallel do not distrub each other or pending by each other 
+        section:
+          - springboot-master-section-01 
+          # - springboot-master-section-02 
+          # - springboot-master-section-03  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Maven Clean Package and Push to Docker Hub
+        run: |
+          cd springboot-master-class/${{ matrix.section }}
+          mvn clean package             
+        env:
+          CI: false
