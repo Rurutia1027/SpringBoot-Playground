@@ -47,7 +47,14 @@ jobs:
         id: build-number
         run: echo "::set-output name=BUILD_NUMBER::$(date '+%-d.%-m.%Y.%-H.%-M.%-S')"
 
-            # Check if the 'fullstack' database exists in PostgreSQL
+      - name: Wait for PostgreSQL service Ready
+        run: |
+          until pg_isready -h localhost -p 5432 -U postgres; do
+            echo "Waiting for PostgreSQL to be ready..."
+            sleep 2
+          done
+
+      # Check if the 'fullstack' database exists in PostgreSQL
       - name: Verify PostgreSQL Database
         run: |
           until pg_isready -h localhost -p 5432 -U postgres; do
@@ -59,13 +66,14 @@ jobs:
           POSTGRESQL_DB: ${{env.POSTGRESQL_DB}}
           POSTGRESQL_USER: ${{env.POSTGRESQL_USER}}
           POSTGRESQL_PASSWORD: ${{env.POSTGRESQL_PASSWORD}}
+          
 
-      #   # adopt github inner dockerlogin action rather than docker login -u shell command
-      # - name: Docker Login
-      #   uses: docker/login-action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a
-      #   with:
-      #     username: ${{secrets.DOCKER_HUB_USERNAME}}
-      #     password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
+      # adopt github inner dockerlogin action rather than docker login -u shell command
+      - name: Docker Login
+        uses: docker/login-action@f3364599c6aa293cdc2b8391b1b56d0c30e45c8a
+        with:
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
 
       # - name: Maven Clean Package and Push to Dockerhub
       #   run: |
