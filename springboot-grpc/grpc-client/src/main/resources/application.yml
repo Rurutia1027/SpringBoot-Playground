@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: grpc-client
+  lifecycle:
+    timeout-per-shutdown-phase: "2m"
+
+server:
+  port: 8082
+  http2:
+    enabled: true
+
+grpc-client:
+  greet:
+    host: localhost
+    port: 58081
+
+management:
+  health:
+    diskspace:
+      enabled: false
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: 'health'
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /swagger-doc/api
+    groups:
+      enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-doc/index.html
+  override-with-generic-response: false
+
+
+logging:
+  pattern:
+    console: "{ \"datetime\": \"%d{yyyy-MM-dd HH:mm:ss.SSS}\", \"level\": \"%level\", \"traceId\": \"%mdc{traceId}\", \"spanId\": \"%mdc{spanId}\", \"thread\": \"%thread\", \"class\": \"%c{2.}\", \"message\": \"%m\"}%n"
