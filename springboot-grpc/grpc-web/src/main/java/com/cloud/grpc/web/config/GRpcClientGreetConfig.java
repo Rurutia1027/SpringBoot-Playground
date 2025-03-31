@@ -1,6 +1,5 @@
 package com.cloud.grpc.web.config;
 
-import com.cloud.grpc.common.interceptor.GrpcClientInterceptor;
 import com.cloud.grpc.rpc.service.GreeterGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
