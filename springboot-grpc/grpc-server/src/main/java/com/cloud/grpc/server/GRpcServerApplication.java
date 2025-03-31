@@ -1,5 +1,6 @@
 package com.cloud.grpc.server;
 
+import com.cloud.grpc.common.interceptor.server.GrpcServerInterceptor;
 import com.cloud.grpc.server.service.GreetServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -36,7 +37,7 @@ public class GRpcServerApplication {
         Server server = ServerBuilder
                 .forPort(port)
                 .addService(greetService)
-                //.intercept(new GrpcServerInterceptor(applicationName))
+                .intercept(new GrpcServerInterceptor(applicationName))
                 .build();
 
         server.start();
