@@ -5,8 +5,32 @@ spring:
   application:
     name: grpc-web-client
 
-grpc:
-  client:
-    greeterClient:  # This must match the bean name used in @GrpcClient
-      address: static://localhost:58081  # gRPC server address
-      negotiationType: PLAINTEXT  # Use TLS if needed (use "TLS" for secured communication)
+grpc-client:
+  greet:
+    host: localhost
+    port: 58081
+
+management:
+  health:
+    diskspace:
+      enabled: false
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: 'health'
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+
+
+logging:
+  pattern:
+    console: "{ \"datetime\": \"%d{yyyy-MM-dd HH:mm:ss.SSS}\", \"level\": \"%level\", \"traceId\": \"%mdc{traceId}\", \"spanId\": \"%mdc{spanId}\", \"thread\": \"%thread\", \"class\": \"%c{2.}\", \"message\": \"%m\"}%n"

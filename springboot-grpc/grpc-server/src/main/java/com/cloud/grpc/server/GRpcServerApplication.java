@@ -4,6 +4,7 @@ import com.cloud.grpc.common.interceptor.GrpcServerInterceptor;
 import com.cloud.grpc.server.service.GreetServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,31 +28,21 @@ public class GRpcServerApplication {
 
     private final GreetServiceImpl greetService;
 
+    @Autowired
     public GRpcServerApplication(GreetServiceImpl greetService) {
         this.greetService = greetService;
     }
 
-
     @Bean
     public Server grpcServer() throws IOException {
-        return ServerBuilder
+        Server server = ServerBuilder
                 .forPort(port)
-                // register services to server (service provider)
                 .addService(greetService)
-                .intercept(new GrpcServerInterceptor(applicationName))
-                .build()
-                .start();
-    }
+                //.intercept(new GrpcServerInterceptor(applicationName))
+                .build();
 
-    @Bean
-    public CommandLineRunner commandLineRunner(Server server) {
-        return args -> {
-            try {
-                server.awaitTermination(); // Keeps the server running
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        };
+        server.start();
+        return server;
     }
 }
 

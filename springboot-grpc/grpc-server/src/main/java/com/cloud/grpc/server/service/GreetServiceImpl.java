@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 public class GreetServiceImpl extends GreeterGrpc.GreeterImplBase {
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-        super.sayHello(request, responseObserver);
+        HelloReply reply = HelloReply.newBuilder().setMessage("Hello, " + request.getName()).build();
+        responseObserver.onNext(reply);
+        responseObserver.onCompleted();
     }
 }

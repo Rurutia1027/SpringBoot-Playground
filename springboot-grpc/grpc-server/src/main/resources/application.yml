@@ -13,6 +13,7 @@ server:
 
 grpc:
   server:
+    address: localhost
     port: 58081
 
 management:

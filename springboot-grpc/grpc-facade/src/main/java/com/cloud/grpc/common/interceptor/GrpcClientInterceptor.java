@@ -5,18 +5,15 @@ import io.grpc.Channel;
 import io.grpc.ClientCall;
 import io.grpc.ClientInterceptor;
 import io.grpc.MethodDescriptor;
-import io.micrometer.tracing.Tracer;
 
 public class GrpcClientInterceptor implements ClientInterceptor {
 
     private final String gRPCClientName;
     private final String gRPCServerName;
-    private final Tracer tracer;
 
-    public GrpcClientInterceptor(final String gRPCClientName, final String gRPCServerName, final Tracer tracer) {
+    public GrpcClientInterceptor(final String gRPCClientName, final String gRPCServerName) {
         this.gRPCClientName = gRPCClientName;
         this.gRPCServerName = gRPCServerName;
-        this.tracer = tracer;
     }
 
 

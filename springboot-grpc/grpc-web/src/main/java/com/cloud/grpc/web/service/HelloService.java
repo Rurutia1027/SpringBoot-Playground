@@ -1,4 +1,4 @@
-package com.cloud.grpc.service;
+package com.cloud.grpc.web.service;
 
 import com.cloud.grpc.rpc.service.HelloRequest;
 

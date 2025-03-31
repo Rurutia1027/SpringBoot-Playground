@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>grpc-client</module>
         <module>grpc-facade</module>
         <module>grpc-server</module>
         <module>grpc-web</module>
