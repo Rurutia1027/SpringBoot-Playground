@@ -1,4 +1,4 @@
-package com.mini.payment.persistence;
+package com.mini.payment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

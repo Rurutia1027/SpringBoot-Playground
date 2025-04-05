@@ -136,7 +136,6 @@ public final class StringUtil {
         int size = 0;
         if (null != content) {
             try {
-                // 汉字采用utf-8编码时占3个字节
                 size = content.getBytes("utf-8").length;
             } catch (UnsupportedEncodingException e) {
                 LOG.error(e);

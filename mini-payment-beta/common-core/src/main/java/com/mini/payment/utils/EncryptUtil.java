@@ -30,7 +30,7 @@ public class EncryptUtil {
 
     private static final Log LOG = LogFactory.getLog(EncryptUtil.class);
 
-    // 密码盐
+    // add salt
     public static final String PWDSALT = "PAY";
 
     private EncryptUtil() {
@@ -80,8 +80,6 @@ public class EncryptUtil {
 
     private static String encode(String str, String method) {
         MessageDigest mdInst = null;
-        // 把密文转换成十六进制的字符串形式
-        // 单线程用StringBuilder，速度快 多线程用stringbuffer，安全
         StringBuilder dstr = new StringBuilder();
         try {
             mdInst = MessageDigest.getInstance(method);

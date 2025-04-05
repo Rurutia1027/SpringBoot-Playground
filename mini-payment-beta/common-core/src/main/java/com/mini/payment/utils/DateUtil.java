@@ -30,32 +30,20 @@ public class DateUtil {
 
     public static final String TIME_WITH_MINUTE_PATTERN = "HH:mm";
 
-    public static final long DAY_MILLI = 24 * 60 * 60 * 1000; // 一天的MilliSecond
+    // how many milliseconds in a day
+    public static final long DAY_MILLI = 24 * 60 * 60 * 1000;
 
     public final static int LEFT_OPEN_RIGHT_OPEN = 1;
     public final static int LEFT_CLOSE_RIGHT_OPEN = 2;
     public final static int LEFT_OPEN_RIGHT_CLOSE = 3;
     public final static int LEFT_CLOSE_RIGHT_CLOSE = 4;
-    /**
-     * 比较日期的模式 --只比较日期，不比较时间
-     */
     public final static int COMP_MODEL_DATE = 1;
-    /**
-     * 比较日期的模式 --只比较时间，不比较日期
-     */
     public final static int COMP_MODEL_TIME = 2;
-    /**
-     * 比较日期的模式 --比较日期，也比较时间
-     */
     public final static int COMP_MODEL_DATETIME = 3;
 
     private static Log logger = LogFactory.getLog(DateUtil.class);
-
-    /**
-     * 要用到的DATE Format的定义
-     */
-    public static String DATE_FORMAT_DATEONLY = "yyyy-MM-dd"; // 年/月/日
-    public static String DATE_FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss"; // 年/月/日
+    public static String DATE_FORMAT_DATEONLY = "yyyy-MM-dd";
+    public static String DATE_FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss";
     public static SimpleDateFormat sdfDateTime = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATETIME);
     // Global SimpleDateFormat object
     public static SimpleDateFormat sdfDateOnly = new SimpleDateFormat(DateUtil.DATE_FORMAT_DATEONLY);
@@ -65,9 +53,6 @@ public class DateUtil {
     public static final SimpleDateFormat HMS_FORMAT = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat formatTimestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    /**
-     * 根据日期格式字符串解析日期字符串
-     */
     public static Date parseDate(String str, String parsePatterns) {
         try {
             return org.apache.commons.lang3.time.DateUtils.parseDate(str,
@@ -81,10 +66,10 @@ public class DateUtil {
     /**
      * 根据单位字段比较两个日期
      *
-     * @param date      日期1
-     * @param otherDate 日期2
-     * @param withUnit  单位字段，从Calendar field取值
-     * @return 等于返回0值, 大于返回大于0的值 小于返回小于0的值
+     * @param date      date1
+     * @param otherDate date2
+     * @param withUnit  unit from Calendar
+     * @return
      */
     public static int compareDate(Date date, Date otherDate, int withUnit) {
         Calendar dateCal = Calendar.getInstance();
@@ -120,12 +105,10 @@ public class DateUtil {
     }
 
     /**
-     * 根据单位字段比较两个时间
-     *
-     * @param date      时间1
-     * @param otherDate 时间2
-     * @param withUnit  单位字段，从Calendar field取值
-     * @return 等于返回0值, 大于返回大于0的值 小于返回小于0的值
+     * @param date      date1
+     * @param otherDate date2
+     * @param withUnit  time unit from Calendar
+     * @return
      */
     public static int compareTime(Date date, Date otherDate, int withUnit) {
         Calendar dateCal = Calendar.getInstance();
@@ -287,8 +270,6 @@ public class DateUtil {
     }
 
     /**
-     * 计算 hour 小时后的时间
-     * <p>
      * calculate date value by providing date and after given hour value
      *
      * @param date
@@ -337,7 +318,6 @@ public class DateUtil {
     }
 
     /**
-     * 计算 day 天后的时间
      * calculate date value after given days
      *
      * @param date
@@ -1214,8 +1194,8 @@ public class DateUtil {
      */
     public static Date getPreviousMonthFirstDay() {
         Calendar lastDate = Calendar.getInstance();
-        lastDate.set(Calendar.DATE, 1);// 设为当前月的1号
-        lastDate.add(Calendar.MONTH, -1);// 减一个月，变为下月的1号
+        lastDate.set(Calendar.DATE, 1);
+        lastDate.add(Calendar.MONTH, -1);
         return getMinTime(lastDate.getTime());
     }
 
@@ -1226,7 +1206,7 @@ public class DateUtil {
      */
     public static Date getPreviousMonthLastDay() {
         Calendar lastDate = Calendar.getInstance();
-        lastDate.set(Calendar.DATE, 1);// 设为当前月的1号
+        lastDate.set(Calendar.DATE, 1);
         lastDate.add(Calendar.DATE, -1);
         return getMinTime(lastDate.getTime());
     }
