@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = PaymentServiceApplicationTest.class)
-class MpAccountRepositoryTest {
+public class MpAccountRepositoryTest {
     @Autowired
     private MpAccountRepository mpAccountRepository;
 
