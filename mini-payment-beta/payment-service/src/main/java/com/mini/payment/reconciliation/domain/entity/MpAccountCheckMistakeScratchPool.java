@@ -1,10 +1,12 @@
 package com.mini.payment.reconciliation.domain.entity;
 
 import com.mini.payment.domain.DomainImpl;
+import jakarta.persistence.Entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Entity
 public class MpAccountCheckMistakeScratchPool extends DomainImpl {
     private String productName;
     private String merchantOrderNo;
