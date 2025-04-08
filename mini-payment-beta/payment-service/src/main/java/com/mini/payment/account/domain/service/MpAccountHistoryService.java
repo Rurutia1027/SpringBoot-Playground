@@ -12,5 +12,5 @@ public interface MpAccountHistoryService {
 
     MpAccountHistory getDataById(String id);
 
-    Page<MpAccountHistory> listPage(MpAccountHistoryCondition condition, Pageable pageable);
+    Page<MpAccountHistory> listPage(MpAccountHistory param, Pageable pageable);
 }
