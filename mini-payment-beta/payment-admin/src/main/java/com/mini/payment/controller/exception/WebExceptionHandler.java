@@ -17,7 +17,7 @@ public class WebExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public String processBizException(HttpServletRequest request, BizException e) {
         LOG.error("BizException", e);
-        return e.getMsg();
+        return e.toString();
     }
 
     @ExceptionHandler({Exception.class})

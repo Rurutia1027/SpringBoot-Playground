@@ -1,0 +1,4 @@
+package com.mini.payment.permission.domain.service;
+
+public interface PmsRolePermissionService {
+}

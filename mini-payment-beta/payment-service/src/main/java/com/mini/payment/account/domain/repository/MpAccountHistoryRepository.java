@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MpAccountHistoryRepository extends BaseRepository<MpAccountHistory> {
     @Modifying
-    @Query("UPDATE MpAccountHistory a SET a.amount = :#{#e.amount}, a.balance = :#{#e.balance} WHERE a.id = :#{#e.id}")
+    @Query("UPDATE MpAccountHistory a SET a.amount = :#{#e.amount}, " +
+            "a.balance = :#{#e.balance} WHERE a.id = :#{#e.id}")
     void updateAmountAndBalance(@Param("e") MpAccountHistory e);
 }
