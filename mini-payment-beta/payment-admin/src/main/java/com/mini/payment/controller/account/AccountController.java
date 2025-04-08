@@ -1,4 +1,4 @@
-package com.mini.payment.account;
+package com.mini.payment.controller.account;
 
 import com.mini.payment.account.domain.entity.MpAccount;
 import com.mini.payment.account.domain.entity.MpAccountHistory;
