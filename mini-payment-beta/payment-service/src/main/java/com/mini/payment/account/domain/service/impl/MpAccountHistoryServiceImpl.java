@@ -1,4 +1,38 @@
 package com.mini.payment.account.domain.service.impl;
 
-public class MpAccountHistoryServiceImpl {
+import com.mini.payment.account.domain.dto.MpAccountHistoryCondition;
+import com.mini.payment.account.domain.entity.MpAccountHistory;
+import com.mini.payment.account.domain.repository.MpAccountHistoryRepository;
+import com.mini.payment.account.domain.service.MpAccountHistoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class MpAccountHistoryServiceImpl implements MpAccountHistoryService {
+    @Autowired
+    private MpAccountHistoryRepository mpAccountHistoryRepository;
+
+    @Override
+    public void saveData(MpAccountHistory mpAccountHistory) {
+        mpAccountHistoryRepository.save(mpAccountHistory);
+    }
+
+    @Override
+    @Transactional
+    public void updateAmountAndBalance(MpAccountHistory mpAccountHistory) {
+        mpAccountHistoryRepository.updateAmountAndBalance(mpAccountHistory);
+    }
+
+    @Override
+    public MpAccountHistory getDataById(String id) {
+        return null;
+    }
+
+    @Override
+    public Page<MpAccountHistory> listPage(MpAccountHistoryCondition condition, Pageable pageable) {
+        return null;
+    }
 }
