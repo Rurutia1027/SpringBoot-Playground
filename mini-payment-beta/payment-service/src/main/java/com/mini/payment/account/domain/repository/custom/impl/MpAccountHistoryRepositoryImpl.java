@@ -89,7 +89,7 @@ public class MpAccountHistoryRepositoryImpl implements MpAccountHistoryRepositor
         }
 
         if (param.getAmount() != null) {
-            countPredicates.add(cb.equal(countRoot.get("amout"), param.getAmount()));
+            countPredicates.add(cb.equal(countRoot.get("amount"), param.getAmount()));
         }
 
         countQuery.where(cb.and(countPredicates.toArray(new Predicate[0])));
